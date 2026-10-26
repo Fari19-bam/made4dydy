@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Gift For You</title>
+<style>
+:root {
+  --green: #173d30;
+  --deep: #102b22;
+  --cream: #f8f4e9;
+  --gold: #c9ad72;
+  --muted: #b9c8bd;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--deep);
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+}
+.page {
+  max-width: 760px;
+  margin: auto;
+  padding: 34px 22px 60px;
+}
+.topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--gold);
+  font: 10px Arial, sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.hero {
+  text-align: center;
+  padding: 62px 0 48px;
+  border-bottom: 1px solid #c9ad723d;
+}
+.eyebrow {
+  color: var(--gold);
+  font: 11px Arial, sans-serif;
+  letter-spacing: 4px;
+}
+.number {
+  font-size: clamp(110px, 30vw, 190px);
+  line-height: .95;
+  font-weight: normal;
+  margin: 22px 0 12px;
+  color: var(--cream);
+}
+.subtitle {
+  font-size: clamp(22px, 6vw, 32px);
+  font-style: italic;
+  margin: 0 0 18px;
+}
+.intro {
+  color: var(--muted);
+  font: 13px Arial, sans-serif;
+  letter-spacing: .5px;
+  line-height: 1.8;
+}
+.section-title {
+  text-align: center;
+  color: var(--gold);
+  font: 10px Arial, sans-serif;
+  letter-spacing: 3px;
+  margin: 34px 0 20px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+.card {
+  text-align: left;
+  min-height: 155px;
+  padding: 20px 16px;
+  background: var(--green);
+  border: 1px solid #c9ad7245;
+  color: var(--cream);
+  cursor: pointer;
+  transition: .25s;
+  font-family: inherit;
+}
+.card:hover, .card:focus-visible {
+  background: #245441;
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+.symbol {
+  display: block;
+  color: var(--gold);
+  font-size: 24px;
+  margin-bottom: 19px;
+}
+.card h2 {
+  font-size: 21px;
+  font-weight: normal;
+  margin: 0 0 8px;
+}
+.card p {
+  color: var(--muted);
+  font: 11px Arial, sans-serif;
+  margin: 0;
+  line-height: 1.6;
+}
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--gold);
+  font: 10px Arial, sans-serif;
+  letter-spacing: 2px;
+}
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #06140feF;
+  z-index: 10;
+  padding: 18px;
+  align-items: center;
+  justify-content: center;
+}
+.overlay.open { display: flex; }
+.modal {
+  width: 100%;
+  max-width: 480px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--cream);
+  color: var(--deep);
+  padding: 30px 24px;
+  border: 1px solid var(--gold);
+  position: relative;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  border: 0;
+  background: transparent;
+  font-size: 28px;
+  color: var(--green);
+  cursor: pointer;
+}
+.modal small {
+  color: #927641;
+  font: 10px Arial, sans-serif;
+  letter-spacing: 2px;
+}
+.modal h2 {
+  font-size: 30px;
+  font-weight: normal;
+  font-style: italic;
+  margin: 18px 0;
+}
+.modal p {
+  font-size: 16px;
+  line-height: 1.8;
+}
+.note {
+  background: #eae5d8;
+  padding: 16px;
+  white-space: pre-line;
+}
+@media (max-width: 420px) {
+  .page { padding-left: 17px; padding-right: 17px; }
+  .card { padding: 17px 12px; min-height: 145px; }
+  .card h2 { font-size: 18px; }
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="topline">
+    <span>Made with care</span>
+    <span>October 27 · 19</span>
+  </div>
+
+  <section class="hero">
+    <div class="eyebrow">A LITTLE GIFT FOR YOU</div>
+    <div class="number">19</div>
+    <h1 class="subtitle">A little piece of you</h1>
+    <p class="intro">
+      Un cadeau imaginé spécialement pour toi.<br>
+      Four little surprises. One very special person.
+    </p>
+  </section>
+
+  <div class="section-title">CHOOSE A LITTLE SURPRISE</div>
+
+  <section class="cards">
+    <button class="card" onclick="openModal('book')">
+      <span class="symbol">✧</span>
+      <h2>The book</h2>
+      <p>Les 19 pages · Open your little book ↗</p>
+    </button>
+
+    <button class="card" onclick="openModal('voice')">
+      <span class="symbol">♫</span>
+      <h2>A voice note</h2>
+      <p>Ta voix, pour lui · Listen closely ↗</p>
+    </button>
+
+    <button class="card" onclick="openModal('letter')">
+      <span class="symbol">✉</span>
+      <h2>Open later</h2>
+      <p>La lettre à garder · A letter for you ↗</p>
+    </button>
+
+    <button class="card" onclick="openModal('song')">
+      <span class="symbol">♡</span>
+      <h2>Our song</h2>
+      <p>La musique associée · Press play ↗</p>
+    </button>
+  </section>
+
+  <div class="footer">A SMALL GIFT · MADE JUST FOR YOU</div>
+</main>
+
+<div class="overlay" id="overlay" onclick="closeOutside(event)">
+  <section class="modal" role="dialog" aria-modal="true">
+    <button class="close" onclick="closeModal()" aria-label="Close">×</button>
+    <div id="modalContent"></div>
+  </section>
+</div>
+
+<script>
+const content = {
+  book: `
+    <small>SURPRISE 01 · THE BOOK</small>
+    <h2>19 pages, just for you.</h2>
+    <p class="note">Ton petit livre t'attend ici… 💚</p>
+    <p>On ajoutera ici les 19 pages de ton cadeau, une fois la page publiée.</p>
+  `,
+  voice: `
+    <small>SURPRISE 02 · A VOICE NOTE</small>
+    <h2>A little voice, just for you.</h2>
+    <p>Un petit message à écouter quand tu auras besoin d'un sourire.</p>
+    <p class="note">Ton enregistrement audio sera ajouté ici.</p>
+  `,
+  letter: `
+    <small>SURPRISE 03 · OPEN LATER</small>
+    <h2>For a day you need it.</h2>
+    <p>Une lettre à garder, à relire quand tu en auras envie.</p>
+    <p class="note">La lettre secrète sera ajoutée ici. ✉</p>
+  `,
+  song: `
+    <small>SURPRISE 04 · OUR SONG</small>
+    <h2>Some songs keep a memory.</h2>
+    <p>Une mélodie, un souvenir, une petite place à part.</p>
+    <p class="note">Le lien de votre chanson sera ajouté ici. ♡</p>
+  `
+};
+
+function openModal(key) {
+  document.getElementById('modalContent').innerHTML = content[key];
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeOutside(event) {
+  if (event.target.id === 'overlay') closeModal();
+}
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') closeModal();
+});
+</script>
+</body>
+</html>
