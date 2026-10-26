@@ -146,3 +146,152 @@ document.getElementById('bookPage').addEventListener('click',e=>{const r=e.curre
 </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter XIX — Made for Dydy</title>
+<style>
+:root {
+  --ivory: #fbf7ee; --gold: #b99a59; --gold-light: #e6d4a6;
+  --ink: #29271f; --muted: #827966;
+}
+* { box-sizing: border-box; }
+body { margin:0; min-height:100vh; background:#e8dfd0; color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
+button { font:inherit; }
+.scene { min-height:100vh; display:grid; place-items:center; padding:24px 14px; }
+.cover { position:relative; width:min(100%,440px); min-height:min(760px,92vh); overflow:hidden; background:radial-gradient(ellipse at 50% 36%,#fffdf7 0%,var(--ivory) 68%); box-shadow:0 22px 65px #4b3c251f; padding:27px 25px; display:flex; flex-direction:column; align-items:center; text-align:center; animation:appear 1s ease both; }
+@keyframes appear { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+.frame { position:absolute; inset:12px; border:1px solid var(--gold-light); pointer-events:none; }
+.frame:after { content:""; position:absolute; inset:5px; border:1px solid #b99a5938; }
+.top { width:100%; display:flex; justify-content:space-between; align-items:center; color:var(--gold); font:9px Arial,sans-serif; letter-spacing:2px; z-index:1; }
+.seal { width:32px;height:32px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;font:17px Georgia,serif; }
+.flower { position:absolute;width:112px;height:180px;color:var(--gold);opacity:.72;pointer-events:none; }
+.flower svg { width:100%;height:100%; }
+.flower.left { top:91px;left:-14px;transform:rotate(-10deg); }
+.flower.right { bottom:88px;right:-17px;transform:rotate(170deg); }
+.hero { margin-top:58px;z-index:1; }
+.overline { font:9px Arial,sans-serif;letter-spacing:4px;color:var(--gold);text-transform:uppercase; }
+.number { margin:13px 0 0;font-size:clamp(130px,38vw,180px);line-height:.92;font-weight:normal;letter-spacing:-9px;color:var(--gold);background:linear-gradient(130deg,#8f7139,#e2cf9b 48%,#a4864b);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent; }
+.roman { margin-top:10px;font-size:13px;letter-spacing:8px;padding-left:8px;color:#8c774e; }
+.rule { width:75px;height:1px;background:var(--gold);margin:25px auto 22px;position:relative; }
+.rule:after { content:"✧";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--ivory);padding:0 8px;color:var(--gold);font-size:15px; }
+h1 { margin:0;font-size:clamp(28px,8vw,39px);line-height:1.25;font-weight:normal;font-style:italic; }
+.subtitle { color:var(--muted);font-size:13px;line-height:1.8;margin:17px 0 0; }
+.personal { margin-top:auto;padding-top:34px;z-index:1; }
+.dedication { font:9px Arial,sans-serif;letter-spacing:3px;color:#9a8456; }
+.name { font-size:24px;font-style:italic;margin:12px 0; }
+.date { font:9px Arial,sans-serif;letter-spacing:2px;color:var(--muted); }
+.enter { margin:28px 0 12px;padding:14px 23px;background:transparent;border:1px solid var(--gold);color:#76603a;font:9px Arial,sans-serif;letter-spacing:2px;cursor:pointer;transition:.25s; }
+.enter:hover { color:var(--ivory);background:var(--gold); }
+.foot { color:var(--gold);font-size:15px;margin-top:5px; }
+.sparkle { position:absolute;color:var(--gold);font-size:13px;animation:twinkle 3s ease-in-out infinite; }
+.s1 {top:31%;right:15%}.s2{top:43%;left:13%;animation-delay:1s}.s3{bottom:26%;left:19%;animation-delay:1.6s}
+@keyframes twinkle {0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:.9;transform:scale(1.15)}}
+.inside { display:none;width:min(100%,440px);background:var(--ivory);padding:30px 23px;text-align:center;border:1px solid var(--gold-light);box-shadow:0 22px 65px #4b3c251f; }
+.inside.visible {display:block;animation:appear .6s ease both}
+.inside h2 {font-size:31px;font-style:italic;font-weight:normal}
+.inside p {line-height:1.8;color:var(--muted);font-size:14px}
+.tiles {display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.tile {background:#fffdf7;border:1px solid var(--gold-light);padding:19px 8px;cursor:pointer;color:var(--ink)}
+.tile span {display:block;color:var(--gold);font-size:22px;margin-bottom:10px}
+.tile strong {font-size:17px;font-weight:normal}
+.tile small {display:block;color:var(--muted);margin-top:8px;font:10px Arial,sans-serif}
+.message {display:none;text-align:left;margin-top:20px;border-top:1px solid var(--gold-light);padding-top:15px}
+.message.visible {display:block}
+.back {margin-top:20px;background:none;border:0;color:#8c774e;text-decoration:underline;cursor:pointer;font-size:12px}
+@media(max-height:700px){.cover{min-height:680px}.hero{margin-top:38px}}
+/* Book reader */
+.reader {display:none;width:min(100%,560px);background:#f5eedf;border:1px solid var(--gold-light);box-shadow:0 22px 65px #4b3c2530;padding:16px 14px 18px;text-align:center;}
+.reader.visible {display:block;animation:appear .45s ease both}
+.reader-top {display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;color:#8c774e;font:10px Arial,sans-serif;letter-spacing:1.5px;text-transform:uppercase}
+.reader-top button,.reader-controls button {background:transparent;border:1px solid var(--gold);padding:9px 12px;color:#76603a;cursor:pointer}
+.book-stage {perspective:1500px;min-height:440px;display:grid;place-items:center}
+.book-page {width:100%;min-height:420px;max-width:480px;background:radial-gradient(ellipse at 50% 25%,#fffdf8 0%,#fbf7ee 70%);border:1px solid #e5d5b1;box-shadow:0 8px 24px #6c57301c;position:relative;padding:34px 25px 30px;display:flex;flex-direction:column;justify-content:center;transform-origin:left center;animation:pageIn .35s ease both}
+.book-page:before {content:"";position:absolute;inset:9px;border:1px solid #b99a5940;pointer-events:none}
+.book-page h3 {font-size:clamp(22px,5vw,29px);line-height:1.25;font-weight:normal;font-style:italic;color:#40372a;margin:0 0 22px;position:relative}
+.book-page p {font-size:15px;line-height:1.9;color:#655947;margin:0;white-space:normal;position:relative}
+.book-page .ornament {color:var(--gold);font-size:17px;margin-top:25px;position:relative}
+.book-page .page-num {position:absolute;bottom:15px;left:0;right:0;color:#9b875e;font:9px Arial,sans-serif;letter-spacing:2px}
+@keyframes pageIn {from{opacity:.5;transform:rotateY(-9deg) translateX(8px)}to{opacity:1;transform:rotateY(0) translateX(0)}}
+.reader-controls {display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px}
+.reader-controls span {font:11px Arial,sans-serif;color:#8c774e;letter-spacing:1px}
+.reader-hint {font:10px Arial,sans-serif;color:#93836a;margin:12px 0 0}
+@media(max-width:380px){.book-stage{min-height:390px}.book-page{min-height:370px;padding:27px 20px}.book-page p{font-size:14px;line-height:1.75}}
+</style>
+</head>
+<body>
+<div class="scene">
+  <main class="cover" id="cover">
+    <div class="frame"></div>
+    <div class="top"><span>A GIFT, MADE WITH CARE</span><span class="seal">✧</span></div>
+    <div class="flower left" aria-hidden="true"><svg viewBox="0 0 120 190" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M28 190 Q42 120 65 44"/><path d="M38 148 Q5 125 8 100 Q35 112 38 148Z"/><path d="M49 117 Q85 94 88 69 Q56 79 49 117Z"/><path d="M65 50 Q38 37 43 15 Q63 19 65 50Z"/><path d="M65 50 Q88 24 105 35 Q94 55 65 50Z"/><path d="M65 50 Q54 76 39 65 Q42 47 65 50Z"/><path d="M65 50 Q81 66 75 81 Q59 71 65 50Z"/><path d="M65 50 Q64 24 79 14 Q88 36 65 50Z"/><path d="M39 148 Q25 151 14 142"/></svg></div>
+    <div class="flower right" aria-hidden="true"><svg viewBox="0 0 120 190" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M28 190 Q42 120 65 44"/><path d="M38 148 Q5 125 8 100 Q35 112 38 148Z"/><path d="M49 117 Q85 94 88 69 Q56 79 49 117Z"/><path d="M65 50 Q38 37 43 15 Q63 19 65 50Z"/><path d="M65 50 Q88 24 105 35 Q94 55 65 50Z"/><path d="M65 50 Q54 76 39 65 Q42 47 65 50Z"/><path d="M65 50 Q81 66 75 81 Q59 71 65 50Z"/><path d="M65 50 Q64 24 79 14 Q88 36 65 50Z"/></svg></div>
+    <span class="sparkle s1">✧</span><span class="sparkle s2">✦</span><span class="sparkle s3">✧</span>
+    <section class="hero"><div class="overline">A new chapter begins</div><div class="number">19</div><div class="roman">XIX · MMXXVI</div><div class="rule"></div><h1>A little piece<br>of you.</h1><p class="subtitle">Un petit univers préparé spécialement pour toi.<br>À ouvrir doucement, à garder longtemps.</p></section>
+    <section class="personal"><div class="dedication">ESPECIALLY FOR</div><div class="name">Dydy</div><div class="date">27 OCTOBER 2026</div><button class="enter" onclick="enterGift()">OPEN YOUR GIFT &nbsp; ✧</button><div class="foot">♡</div></section>
+  </main>
+  <section class="inside" id="inside">
+    <div class="overline">A little gift for you</div><h2>Choose a little surprise.</h2><p>Quatre petites attentions, imaginées pour tes 19 ans.</p>
+    <div class="tiles">
+      <button class="tile" onclick="openBook()"><span>❧</span><strong>The book</strong><small>19 little pages</small></button>
+      <button class="tile" onclick="showMessage('voice')"><span>♫</span><strong>A voice note</strong><small>A message for you</small></button>
+      <button class="tile" onclick="showMessage('letter')"><span>✉</span><strong>Open later</strong><small>A letter to keep</small></button>
+      <button class="tile" onclick="showMessage('song')"><span>♡</span><strong>Our song</strong><small>A melody & a memory</small></button>
+    </div>
+    <div class="message" id="message"></div><button class="back" onclick="backToCover()">← Back to the cover</button>
+  </section>
+  <section class="reader" id="reader" aria-label="Livre interactif">
+    <div class="reader-top"><button onclick="closeBook()">← Retour</button><span>Chapter XIX · Dydy</span><span>✧</span></div>
+    <div class="book-stage" id="bookStage">
+      <article class="book-page" id="bookPage"><h3>Un cadeau un peu différent</h3><p>Je voulais t’offrir quelque chose que tu pourrais garder et relire quand tu en aurais envie. Alors j’ai rassemblé ici quelques mots rien que pour toi.</p><div class="ornament">✦</div><div class="page-num">1 / 19</div></article>
+    </div>
+    <div class="reader-controls"><button onclick="prevPage()" id="prevBtn" disabled>← Page précédente</button><span id="pageCounter">1 / 19</span><button onclick="nextPage()" id="nextBtn">Page suivante →</button></div>
+    <p class="reader-hint">Tu peux aussi glisser ton doigt sur la page pour avancer ou revenir.</p>
+  </section>
+</div>
+<script>
+function enterGift(){document.getElementById('cover').style.display='none';document.getElementById('inside').classList.add('visible');document.getElementById('reader').classList.remove('visible');window.scrollTo(0,0)}
+function backToCover(){document.getElementById('inside').classList.remove('visible');document.getElementById('cover').style.display='flex';document.getElementById('message').classList.remove('visible');document.getElementById('reader').classList.remove('visible');window.scrollTo(0,0)}
+const messages={
+ voice:['A VOICE NOTE','A little voice, just for you.','Ton message vocal sera ajouté ici pour qu’il puisse t’écouter.'],
+ letter:['OPEN LATER','For a day you need it.','Une lettre à relire quand tu auras besoin de douceur, de courage ou d’un petit sourire.'],
+ song:['OUR SONG','Some songs keep a memory.','Votre chanson et son lien seront ajoutés ici.']
+};
+function showMessage(key){const m=messages[key],box=document.getElementById('message');box.innerHTML='<div class="overline">'+m[0]+'</div><h2>'+m[1]+'</h2><p>'+m[2]+'</p>';box.classList.add('visible');box.scrollIntoView({behavior:'smooth',block:'nearest'})}
+const pages = [
+["Un cadeau un peu différent","Je voulais t’offrir quelque chose que tu pourrais garder et relire quand tu en aurais envie. Alors j’ai rassemblé ici quelques mots rien que pour toi."],
+["Dix-neuf ans, Dydy !","Joyeux anniversaire ! J’espère que cette nouvelle année t’apportera de belles surprises, de vrais éclats de rire et plein de raisons d’être heureux."],
+["Ton petit caractère","Tu sais très bien m’énerver… et le pire, c’est que ça me fait parfois rire. Ne prends surtout pas ça comme une autorisation de recommencer. 😂"],
+["Tes beaux yeux","Il fallait quand même que je le dise : tu as de beaux yeux. Voilà, c’est dit… maintenant, inutile de prendre encore plus la grosse tête."],
+["Ta gentillesse","Derrière tes petites provocations, il y a aussi quelqu’un de gentil. C’est une part de toi que j’apprécie sincèrement."],
+["Ce que tu ne vois pas toujours","Tu as des qualités qui méritent d’être reconnues, même les jours où tu ne les remarques pas toi-même. J’espère que tu apprendras à les voir autant que les autres peuvent les voir."],
+["Notre petite histoire","Depuis 2023, il y a eu des conversations, des souvenirs et des moments qui nous appartiennent. Je suis contente que nos chemins se soient croisés."],
+["Ton ambition","J’aime te voir avoir des projets et vouloir avancer. Continue à croire en ce que tu construis, même si tout ne se fait pas aussi vite que tu l’espères."],
+["L’homme que tu deviens","Tu es encore en train de grandir, d’apprendre et de découvrir qui tu veux être. J’espère que tu seras fier du chemin que tu vas parcourir."],
+["Un mot que je pense sincèrement","Je suis fière de toi. Pas seulement pour ce que tu accomplis, mais aussi pour la personne que tu continues de devenir."],
+["Les choses simples","Parfois, ce sont les conversations les plus simples et les blagues les plus bêtes qui finissent par rendre une journée plus jolie. J’aime ces petits moments-là."],
+["Une place à part","Certaines personnes prennent une place particulière dans notre histoire sans qu’on ait besoin de tout expliquer. Pour moi, tu fais partie de ces personnes."],
+["Ce que je te souhaite vraiment","Je te souhaite de réussir, de rire souvent, d’être entouré de personnes sincères et de profiter aussi du chemin, pas seulement de l’arrivée."],
+["Ta foi, tes rêves","J’espère que ta foi continuera de te donner de l’espérance, de la force et de la paix. Que Dieu bénisse tes projets et guide tes pas vers de belles choses."],
+["Pourquoi j’ai pris ce temps","Parce que tu comptes pour moi, tout simplement. Je voulais que tu reçoives un cadeau pensé spécialement pour toi, pas quelque chose choisi au hasard."],
+["Un jour, plus tard","Peut-être qu’un jour tu retomberas sur ces pages et que tu souriras en te rappelant tes dix-neuf ans. J’espère que ce souvenir te fera du bien."],
+["Si tu devais retenir une chose","Tu n’as pas besoin d’être parfait ni de tout avoir compris pour être apprécié. Continue simplement d’être toi, avec tes qualités, ton humour et ton caractère. 😂"],
+["Avant la dernière page…","Il y a des choses qu’on croit parfois avoir assez montrées sans jamais les dire clairement. Alors avant de terminer, je voulais prendre le temps de te le dire avec des mots."],
+["Bon… j’ai quelque chose à t’avouer.","Bon Dydy, nous voilà arrivés à la dernière page. J’espère que tu as souri au moins une fois en lisant ce petit livre. J’ai essayé de trouver les bons mots, même si tu sais très bien que dans la vraie vie, tu réussis parfois à m’énerver beaucoup plus vite que je ne réussis à écrire une phrase gentille sur toi. 😂 Et ne parlons même pas de tes beaux yeux, tu as déjà assez confiance comme ça !\n\nMais je voulais aussi que tu découvres les autres petites surprises que j’ai préparées pour toi. Il y a ma voix, pour que tu puisses m’entendre même quand je ne suis pas juste à côté ; une lettre à garder pour un autre moment ; et notre chanson, parce que certaines mélodies finissent par nous rappeler des personnes et des instants particuliers.\n\nJe sais que la distance n’est pas toujours simple. Il y a des moments où l’on aimerait pouvoir être là, partager un rire en vrai, se taquiner sans écran entre nous ou simplement passer un peu de temps ensemble. Un message ne remplace pas une présence, et un écran ne peut pas transmettre toutes les petites choses qu’on ressent quand quelqu’un est là.\n\nAlors, à ma façon, j’ai voulu rapprocher un peu les kilomètres. Chaque surprise est une petite manière de te laisser quelque chose de moi, que tu pourras retrouver quand tu en auras envie. Pas pour remplacer les moments qu’on ne peut pas partager, mais pour en créer un autre, même à distance.\n\nEt au milieu de tout ça, il y a surtout toi. Ta gentillesse, ton ambition, ton caractère parfois insupportable, tes projets et cette personne que tu continues de devenir. Je suis heureuse que nos chemins se soient croisés, et je voulais que tes dix-neuf ans portent un petit souvenir de cette affection que j’ai pour toi.\n\nJe ne sais pas ce que les prochaines années nous réservent. Je sais simplement que certaines personnes deviennent précieuses sans qu’on ait besoin de tout prévoir, et que je n’ai pas envie de faire comme si tu étais quelqu’un d’ordinaire à mes yeux.\n\nAlors continue de rêver grand, de rire fort, de poursuivre ce qui te passionne et de garder cette belle part de toi. J’espère que Dieu bénira tes projets, guidera tes pas et mettra sur ton chemin beaucoup de raisons d’être heureux.\n\nJe t’aimais, je t’aime et je t’aimerai toujours beaucoup, Dydy. 🤍\n\nHier, aujourd’hui, et dans tous les souvenirs que le temps nous permettra encore de créer. Peu importe les kilomètres, les changements ou les années qui passent, tu garderas toujours une place particulière dans mon cœur.\n\nJoyeux 19 ans, toi. Merci d’être entré dans mon histoire. Et surtout, ne prends pas trop la grosse tête après avoir lu tout ça : je te connais, je vais encore devoir te supporter. 😭😂\n\nAvec toute mon affection,\nFari ♡"]
+];
+let currentPage=0;
+function openBook(){document.getElementById('inside').classList.remove('visible');document.getElementById('message').classList.remove('visible');document.getElementById('reader').classList.add('visible');currentPage=0;renderPage();window.scrollTo(0,0)}
+function closeBook(){document.getElementById('reader').classList.remove('visible');document.getElementById('inside').classList.add('visible');window.scrollTo(0,0)}
+function renderPage(){const page=pages[currentPage],article=document.getElementById('bookPage');article.style.animation='none';void article.offsetWidth;article.style.animation='pageIn .35s ease both';article.innerHTML='<h3></h3><p></p><div class="ornament">✦</div><div class="page-num">'+(currentPage+1)+' / '+pages.length+'</div>';article.querySelector('h3').textContent=page[0];article.querySelector('p').textContent=page[1];document.getElementById('pageCounter').textContent=(currentPage+1)+' / '+pages.length;document.getElementById('prevBtn').disabled=currentPage===0;document.getElementById('nextBtn').disabled=currentPage===pages.length-1}
+function nextPage(){if(currentPage<pages.length-1){currentPage++;renderPage()}}
+function prevPage(){if(currentPage>0){currentPage--;renderPage()}}
+let touchStartX=null;
+document.getElementById('bookPage').addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].clientX},{passive:true});
+document.getElementById('bookPage').addEventListener('touchend',e=>{if(touchStartX===null)return;const dx=e.changedTouches[0].clientX-touchStartX;if(dx<-40)nextPage();else if(dx>40)prevPage();touchStartX=null},{passive:true});
+document.getElementById('bookPage').addEventListener('click',e=>{const r=e.currentTarget.getBoundingClientRect();if(e.clientX>r.left+r.width*.62)nextPage();else if(e.clientX<r.left+r.width*.38)prevPage()});
+</script>
+</body>
+</html>
+
