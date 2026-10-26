@@ -2,361 +2,369 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Little Gift for You ♡</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter XIX — Made for Dydy</title>
 <style>
 :root {
-  --paper: #fffaf4;
-  --pink: #e9a0b0;
-  --rose: #b85d78;
-  --ink: #292321;
-  --green: #647b59;
-  --line: #e7bdc8;
+  --ivory: #fbf7ee;
+  --gold: #b99a59;
+  --gold-light: #e6d4a6;
+  --ink: #29271f;
+  --muted: #827966;
 }
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  padding: 20px 12px 36px;
-  background: #f0e4d9;
+  min-height: 100vh;
+  background: #e8dfd0;
   color: var(--ink);
-  font-family: Georgia, serif;
+  font-family: Georgia, "Times New Roman", serif;
 }
 button { font: inherit; }
-.book {
-  max-width: 660px;
-  margin: auto;
-  background: var(--paper);
-  position: relative;
-  padding: 34px 23px 28px;
-  border-left: 10px solid #e6a0b1;
-  box-shadow: 0 8px 28px #785a4b20;
-  overflow: hidden;
+.scene {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 14px;
 }
-.book:before {
-  content: "";
+.cover {
+  position: relative;
+  width: min(100%, 440px);
+  min-height: min(760px, 92vh);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 36%, #fffdf7 0%, var(--ivory) 68%);
+  box-shadow: 0 22px 65px #4b3c251f;
+  padding: 27px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: appear 1s ease both;
+}
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.frame {
   position: absolute;
   inset: 12px;
-  border: 1.5px solid #39302b;
-  border-radius: 18px 5px 16px 5px;
+  border: 1px solid var(--gold-light);
   pointer-events: none;
 }
-.top-decor {
+.frame:after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid #b99a5938;
+}
+.top {
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  font-size: 27px;
-  padding: 0 8px;
-}
-.bow { color: var(--rose); transform: rotate(-12deg); }
-.paper-plane { transform: rotate(-15deg); }
-.cover {
-  text-align: center;
-  position: relative;
-  padding: 28px 0 20px;
-}
-.kicker {
-  font: 10px Arial, sans-serif;
-  letter-spacing: 4px;
-  color: var(--rose);
-  text-transform: uppercase;
-}
-.script {
-  font-family: "Brush Script MT", "Segoe Script", cursive;
-  font-size: clamp(48px, 12vw, 78px);
-  line-height: 1.15;
-  font-weight: normal;
-  font-style: italic;
-  margin: 10px 0 0;
-  text-shadow: 2px 2px 0 #efb8c4;
-}
-.project {
-  display: inline-block;
-  font: 700 clamp(23px, 6vw, 34px) Arial, sans-serif;
-  letter-spacing: 5px;
-  margin-top: 2px;
-  padding: 0 10px 9px;
-  border-bottom: 4px solid var(--pink);
-}
-.date {
-  font: 12px Arial, sans-serif;
-  letter-spacing: 1.5px;
-  margin-top: 18px;
-}
-.intro {
-  font-size: 15px;
-  line-height: 1.8;
-  margin: 17px auto 0;
-  max-width: 330px;
-}
-.name-card {
-  max-width: 380px;
-  margin: 12px auto 28px;
-  padding: 16px 18px;
-  border: 2px solid var(--line);
-  border-radius: 22px 14px 25px 15px;
-  background: #fff8f5;
-  font-size: 14px;
-  line-height: 1.9;
-}
-.name-card span { color: var(--rose); }
-.section-label {
-  text-align: center;
-  font: 10px Arial, sans-serif;
-  letter-spacing: 3px;
-  color: var(--rose);
-  margin: 24px 0 16px;
-}
-.surprises {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 13px;
-  position: relative;
-}
-.surprise {
-  min-width: 0;
-  min-height: 157px;
-  padding: 17px 10px 15px;
-  border: 1.5px solid #c5a4a0;
-  border-radius: 4px 13px 5px 12px;
-  background: #fff6f2;
-  color: var(--ink);
-  cursor: pointer;
-  transition: transform .2s, box-shadow .2s;
-  box-shadow: 2px 3px 0 #ead3cb;
-}
-.surprise:nth-child(2) { transform: rotate(1deg); background: #fff9f0; }
-.surprise:nth-child(3) { transform: rotate(-1deg); background: #fff9f0; }
-.surprise:nth-child(4) { background: #fff4f5; }
-.surprise:hover, .surprise:focus-visible {
-  transform: translateY(-3px) rotate(0);
-  box-shadow: 3px 6px 0 #e6c2c7;
-  outline: none;
-}
-.icon {
-  font-size: 28px;
-  display: block;
-  margin-bottom: 11px;
-}
-.surprise h2 {
-  font-size: 19px;
-  font-weight: normal;
-  margin: 0 0 8px;
-}
-.surprise p {
-  font: 11px Arial, sans-serif;
-  color: #776660;
-  line-height: 1.6;
-  margin: 0;
-}
-.open-hint {
-  display: block;
-  margin-top: 10px;
-  color: var(--rose);
-  font: 10px Arial, sans-serif;
-}
-.bottom-doodle {
-  text-align: center;
-  font-size: 24px;
-  margin-top: 28px;
-  letter-spacing: 8px;
-}
-.footer {
-  text-align: center;
-  font: 10px Arial, sans-serif;
+  align-items: center;
+  color: var(--gold);
+  font: 9px Arial, sans-serif;
   letter-spacing: 2px;
-  color: var(--rose);
-  margin: 10px 0 0;
+  z-index: 1;
+}
+.seal {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 17px Georgia, serif;
 }
 .flower {
   position: absolute;
-  color: #c78396;
-  font-size: 32px;
-  opacity: .8;
+  width: 112px;
+  height: 180px;
+  color: var(--gold);
+  opacity: .72;
+  pointer-events: none;
 }
-.flower.left { left: 12px; top: 205px; }
-.flower.right { right: 12px; top: 550px; }
-.overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 10;
-  padding: 18px;
-  background: #30231f9c;
-  align-items: center;
-  justify-content: center;
+.flower svg { width: 100%; height: 100%; }
+.flower.left { top: 91px; left: -14px; transform: rotate(-10deg); }
+.flower.right { bottom: 88px; right: -17px; transform: rotate(170deg); }
+.hero {
+  margin-top: 58px;
+  z-index: 1;
 }
-.overlay.open { display: flex; }
-.modal {
-  background: var(--paper);
-  width: 100%;
-  max-width: 470px;
-  max-height: 85vh;
-  overflow-y: auto;
-  padding: 32px 24px;
+.overline {
+  font: 9px Arial, sans-serif;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.number {
+  margin: 13px 0 0;
+  font-size: clamp(130px, 38vw, 180px);
+  line-height: .92;
+  font-weight: normal;
+  letter-spacing: -9px;
+  color: var(--gold);
+  background: linear-gradient(130deg, #8f7139, #e2cf9b 48%, #a4864b);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.roman {
+  margin-top: 10px;
+  font-size: 13px;
+  letter-spacing: 8px;
+  padding-left: 8px;
+  color: #8c774e;
+}
+.rule {
+  width: 75px;
+  height: 1px;
+  background: var(--gold);
+  margin: 25px auto 22px;
   position: relative;
-  border: 2px solid var(--pink);
-  outline: 1px solid #fff5e9;
-  outline-offset: -8px;
-  border-radius: 5px 20px 5px 17px;
 }
-.close {
+.rule:after {
+  content: "✧";
   position: absolute;
-  top: 10px;
-  right: 14px;
-  border: 0;
-  background: transparent;
-  font-size: 29px;
-  color: var(--rose);
-  cursor: pointer;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background: var(--ivory);
+  padding: 0 8px;
+  color: var(--gold);
+  font-size: 15px;
 }
-.modal-kicker {
-  color: var(--rose);
-  font: 10px Arial, sans-serif;
+h1 {
+  margin: 0;
+  font-size: clamp(28px, 8vw, 39px);
+  line-height: 1.25;
+  font-weight: normal;
+  font-style: italic;
+}
+.subtitle {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 17px 0 0;
+}
+.personal {
+  margin-top: auto;
+  padding-top: 34px;
+  z-index: 1;
+}
+.dedication {
+  font: 9px Arial, sans-serif;
   letter-spacing: 3px;
+  color: #9a8456;
 }
-.modal h2 {
+.name {
+  font-size: 24px;
+  font-style: italic;
+  margin: 12px 0;
+}
+.date {
+  font: 9px Arial, sans-serif;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+.enter {
+  margin: 28px 0 12px;
+  padding: 14px 23px;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: #76603a;
+  font: 9px Arial, sans-serif;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: .25s;
+}
+.enter:hover {
+  color: var(--ivory);
+  background: var(--gold);
+}
+.foot {
+  color: var(--gold);
+  font-size: 15px;
+  margin-top: 5px;
+}
+.sparkle {
+  position: absolute;
+  color: var(--gold);
+  font-size: 13px;
+  animation: twinkle 3s ease-in-out infinite;
+}
+.s1 { top: 31%; right: 15%; }
+.s2 { top: 43%; left: 13%; animation-delay: 1s; }
+.s3 { bottom: 26%; left: 19%; animation-delay: 1.6s; }
+@keyframes twinkle {
+  0%,100% { opacity: .3; transform: scale(.8); }
+  50% { opacity: .9; transform: scale(1.15); }
+}
+.inside {
+  display: none;
+  width: min(100%, 440px);
+  background: var(--ivory);
+  padding: 30px 23px;
+  text-align: center;
+  border: 1px solid var(--gold-light);
+  box-shadow: 0 22px 65px #4b3c251f;
+}
+.inside.visible { display: block; animation: appear .6s ease both; }
+.inside h2 {
   font-size: 31px;
   font-style: italic;
   font-weight: normal;
-  margin: 20px 0 14px;
 }
-.modal p {
-  font-size: 16px;
-  line-height: 1.85;
+.inside p { line-height: 1.8; color: var(--muted); font-size: 14px; }
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
+.tile {
+  background: #fffdf7;
+  border: 1px solid var(--gold-light);
+  padding: 19px 8px;
+  cursor: pointer;
+  color: var(--ink);
 }
-.note {
-  background: #fff0f0;
-  border-left: 3px solid var(--pink);
-  padding: 15px;
-  white-space: pre-line;
+.tile span { display: block; color: var(--gold); font-size: 22px; margin-bottom: 10px; }
+.tile strong { font-size: 17px; font-weight: normal; }
+.tile small { display: block; color: var(--muted); margin-top: 8px; font: 10px Arial,sans-serif; }
+.message {
+  display: none;
+  text-align: left;
+  margin-top: 20px;
+  border-top: 1px solid var(--gold-light);
+  padding-top: 15px;
 }
-.tulip-row {
-  text-align: center;
-  margin-top: 22px;
-  font-size: 23px;
+.message.visible { display: block; }
+.back {
+  margin-top: 20px;
+  background: none;
+  border: 0;
+  color: #8c774e;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 12px;
 }
-@media(max-width:380px) {
-  .book { padding: 27px 17px 23px; }
-  .surprise { min-height: 150px; padding: 14px 8px; }
-  .surprise h2 { font-size: 17px; }
-  .name-card { font-size: 13px; padding: 13px; }
+@media(max-height:700px) {
+  .cover { min-height: 680px; }
+  .hero { margin-top: 38px; }
 }
 </style>
 </head>
 <body>
-<main class="book">
-  <div class="top-decor">
-    <span class="bow">୨୧ ♡</span>
-    <span class="paper-plane">♡ ✈</span>
-  </div>
+<div class="scene">
+  <main class="cover" id="cover">
+    <div class="frame"></div>
+    <div class="top">
+      <span>A GIFT, MADE WITH CARE</span>
+      <span class="seal">✧</span>
+    </div>
 
-  <div class="flower left" aria-hidden="true">🌷</div>
-  <div class="flower right" aria-hidden="true">🌷</div>
+    <div class="flower left" aria-hidden="true">
+      <svg viewBox="0 0 120 190" fill="none" stroke="currentColor" stroke-width="1.1">
+        <path d="M28 190 Q42 120 65 44"/>
+        <path d="M38 148 Q5 125 8 100 Q35 112 38 148Z"/>
+        <path d="M49 117 Q85 94 88 69 Q56 79 49 117Z"/>
+        <path d="M65 50 Q38 37 43 15 Q63 19 65 50Z"/>
+        <path d="M65 50 Q88 24 105 35 Q94 55 65 50Z"/>
+        <path d="M65 50 Q54 76 39 65 Q42 47 65 50Z"/>
+        <path d="M65 50 Q81 66 75 81 Q59 71 65 50Z"/>
+        <path d="M65 50 Q64 24 79 14 Q88 36 65 50Z"/>
+        <path d="M39 148 Q25 151 14 142"/>
+      </svg>
+    </div>
+    <div class="flower right" aria-hidden="true">
+      <svg viewBox="0 0 120 190" fill="none" stroke="currentColor" stroke-width="1.1">
+        <path d="M28 190 Q42 120 65 44"/>
+        <path d="M38 148 Q5 125 8 100 Q35 112 38 148Z"/>
+        <path d="M49 117 Q85 94 88 69 Q56 79 49 117Z"/>
+        <path d="M65 50 Q38 37 43 15 Q63 19 65 50Z"/>
+        <path d="M65 50 Q88 24 105 35 Q94 55 65 50Z"/>
+        <path d="M65 50 Q54 76 39 65 Q42 47 65 50Z"/>
+        <path d="M65 50 Q81 66 75 81 Q59 71 65 50Z"/>
+        <path d="M65 50 Q64 24 79 14 Q88 36 65 50Z"/>
+      </svg>
+    </div>
 
-  <header class="cover">
-    <div class="kicker">A little gift for you</div>
-    <h1 class="script">A little piece<br>of you</h1>
-    <div class="project">CHAPTER 19</div>
-    <div class="date">27 OCTOBER 2026 · ♡</div>
-    <p class="intro">
-      Un cadeau imaginé spécialement pour toi.<br>
-      Quatre petites surprises, rien que pour toi.
-    </p>
-  </header>
+    <span class="sparkle s1">✧</span>
+    <span class="sparkle s2">✦</span>
+    <span class="sparkle s3">✧</span>
 
-  <section class="name-card">
-    <div>For <span>:</span> Dydy ♡</div>
-    <div>A little reminder <span>:</span> You matter.</div>
-    <div>Made with <span>:</span> Love & care</div>
-    <div>This chapter <span>:</span> Nineteen</div>
-  </section>
+    <section class="hero">
+      <div class="overline">A new chapter begins</div>
+      <div class="number">19</div>
+      <div class="roman">XIX · MMXXVI</div>
+      <div class="rule"></div>
+      <h1>A little piece<br>of you.</h1>
+      <p class="subtitle">
+        Un petit univers préparé spécialement pour toi.<br>
+        À ouvrir doucement, à garder longtemps.
+      </p>
+    </section>
 
-  <div class="section-label">✿ OPEN YOUR LITTLE SURPRISES ✿</div>
+    <section class="personal">
+      <div class="dedication">ESPECIALLY FOR</div>
+      <div class="name">Dydy</div>
+      <div class="date">27 OCTOBER 2026</div>
+      <button class="enter" onclick="enterGift()">OPEN YOUR GIFT &nbsp; ✧</button>
+      <div class="foot">♡</div>
+    </section>
+  </main>
 
-  <section class="surprises">
-    <button class="surprise" onclick="openModal('book')">
-      <span class="icon">📖</span>
-      <h2>The book</h2>
-      <p>19 pages made for you</p>
-      <span class="open-hint">Open your book ↗</span>
-    </button>
+  <section class="inside" id="inside">
+    <div class="overline">A little gift for you</div>
+    <h2>Choose a little surprise.</h2>
+    <p>Quatre petites attentions, imaginées pour tes 19 ans.</p>
 
-    <button class="surprise" onclick="openModal('voice')">
-      <span class="icon">♫</span>
-      <h2>A voice note</h2>
-      <p>A little message for you</p>
-      <span class="open-hint">Listen closely ↗</span>
-    </button>
+    <div class="tiles">
+      <button class="tile" onclick="showMessage('book')">
+        <span>❧</span><strong>The book</strong>
+        <small>19 little pages</small>
+      </button>
+      <button class="tile" onclick="showMessage('voice')">
+        <span>♫</span><strong>A voice note</strong>
+        <small>A message for you</small>
+      </button>
+      <button class="tile" onclick="showMessage('letter')">
+        <span>✉</span><strong>Open later</strong>
+        <small>A letter to keep</small>
+      </button>
+      <button class="tile" onclick="showMessage('song')">
+        <span>♡</span><strong>Our song</strong>
+        <small>A melody & a memory</small>
+      </button>
+    </div>
 
-    <button class="surprise" onclick="openModal('letter')">
-      <span class="icon">💌</span>
-      <h2>Open later</h2>
-      <p>A letter to keep</p>
-      <span class="open-hint">Open when ready ↗</span>
-    </button>
-
-    <button class="surprise" onclick="openModal('song')">
-      <span class="icon">🎵</span>
-      <h2>Our song</h2>
-      <p>A melody and a memory</p>
-      <span class="open-hint">Discover it ↗</span>
-    </button>
-  </section>
-
-  <div class="bottom-doodle">♡ ⌁ ♡</div>
-  <div class="footer">READ · KEEP · REMEMBER</div>
-</main>
-
-<div class="overlay" id="overlay" onclick="closeOutside(event)">
-  <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <button class="close" onclick="closeModal()" aria-label="Fermer">×</button>
-    <div id="modalContent"></div>
-    <div class="tulip-row">♡ 🌷 ♡</div>
+    <div class="message" id="message"></div>
+    <button class="back" onclick="backToCover()">← Back to the cover</button>
   </section>
 </div>
 
 <script>
-const content = {
-  book: `
-    <div class="modal-kicker">SURPRISE NO. 01 · THE BOOK</div>
-    <h2 id="modalTitle">19 pages, just for you.</h2>
-    <p class="note">Un petit livre créé spécialement pour toi. ♡</p>
-    <p>Les 19 pages de ton cadeau viendront prendre leur place ici. Chaque page contient une petite pensée que tu pourras garder.</p>
-  `,
-  voice: `
-    <div class="modal-kicker">SURPRISE NO. 02 · A VOICE NOTE</div>
-    <h2 id="modalTitle">A little voice, just for you.</h2>
-    <p>Parfois, quelques mots entendus valent plus que beaucoup de mots écrits.</p>
-    <p class="note">Ton message vocal sera ajouté ici. ♡</p>
-  `,
-  letter: `
-    <div class="modal-kicker">SURPRISE NO. 03 · OPEN LATER</div>
-    <h2 id="modalTitle">For a day you need it.</h2>
-    <p>Une lettre à garder pour un jour où tu auras besoin de douceur, de courage ou simplement de te rappeler que tu comptes.</p>
-    <p class="note">Ta lettre secrète sera ajoutée ici. 💌</p>
-  `,
-  song: `
-    <div class="modal-kicker">SURPRISE NO. 04 · OUR SONG</div>
-    <h2 id="modalTitle">Some songs keep a memory.</h2>
-    <p>Il y a des mélodies qui finissent par nous rappeler une personne, une période ou un petit morceau de vie.</p>
-    <p class="note">Le lien de votre chanson sera ajouté ici. ♡</p>
-  `
+function enterGift() {
+  document.getElementById('cover').style.display = 'none';
+  document.getElementById('inside').classList.add('visible');
+  window.scrollTo(0,0);
+}
+function backToCover() {
+  document.getElementById('inside').classList.remove('visible');
+  document.getElementById('cover').style.display = 'flex';
+  document.getElementById('message').classList.remove('visible');
+  window.scrollTo(0,0);
+}
+const messages = {
+  book: ['THE BOOK', '19 pages, just for you.', 'Ton petit livre prendra sa place ici. Chaque page sera une petite pensée à garder.'],
+  voice: ['A VOICE NOTE', 'A little voice, just for you.', 'Ton message vocal sera ajouté ici pour qu’il puisse t’écouter.'],
+  letter: ['OPEN LATER', 'For a day you need it.', 'Une lettre à relire quand tu auras besoin de douceur, de courage ou d’un petit sourire.'],
+  song: ['OUR SONG', 'Some songs keep a memory.', 'Votre chanson et son lien seront ajoutés ici.']
 };
-
-function openModal(key) {
-  document.getElementById('modalContent').innerHTML = content[key];
-  document.getElementById('overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
+function showMessage(key) {
+  const m = messages[key];
+  const box = document.getElementById('message');
+  box.innerHTML = '<div class="overline">' + m[0] + '</div><h2>' + m[1] + '</h2><p>' + m[2] + '</p>';
+  box.classList.add('visible');
+  box.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
-function closeModal() {
-  document.getElementById('overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function closeOutside(event) {
-  if (event.target.id === 'overlay') closeModal();
-}
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') closeModal();
-});
 </script>
 </body>
 </html>
